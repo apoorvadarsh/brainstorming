@@ -1,0 +1,71 @@
+junior_developer_task:
+  description: >
+    Genrate atlest 5 out of the box ideas on {topic} that can be utilized to add value to the product.
+    The ides should include the following:
+    - Provide all Functional Blocks for the system
+    - Provide all technical services for the system.
+    - Describe all activities that should be performed to develop application.
+  expected_output: >
+    A list of ideas on {topic} that can be refrenced within the organization.
+    The output should enable the following:
+    - path breaking implementation which can build substantial value to the product.
+    - Describe all activities that should be performed to develop application.
+  agent: junior_developer
+
+research_task:
+  description: >
+    Conduct thorough research on the ideas. Focus on:
+    1. Key concepts and definitions
+    2. Historical development and recent trends
+    3. Major challenges and opportunities
+    4. Notable applications or case studies
+    5. Future outlook and potential developments
+    6. Related technical concepts
+
+    Make sure to organize your findings in a structured format with clear sections.
+  expected_output: >
+    A comprehensive research document with well-organized sections covering
+    all the requested aspects of {topic}. Include specific facts, figures,
+    and examples where relevant.
+  agent: researcher
+  context:
+    - junior_developer_task
+
+senior_developer_task:
+  description: >
+    Send back the ideas to junior_developer or reseracher for more refinement in case you think it needs refinement.
+    Review the ideas and decide about the pros and cons of the ideas when implemented in a large enterprise grade prduct.
+    Provide the value additions for each of the ideas.
+    Provide the implementation approach and project skeletan and code snippets for implementation phase of the project.
+  expected_output: >
+    A report that presents insights in a clear and engaging way.
+  agent: senior_developer
+  context:
+    - junior_developer_task
+    - research_task
+
+visionary_task:
+  description: >
+    Select the best 3 to 4 ideas which will potentially add most value to the product.
+    Write a complete technical blog with all the details along with related technical aspects.
+    The blog process should be based on the {topic} and include all the details for application development.
+    The final output should be a document that will educate and entice other developers to try 
+    out the {topic} and use it for creating new applications.
+    Your blog should:
+    1. Begin with summary of {topic} and its relevance
+    2. Detailed description of concepts
+    3. Ideas pertaining to the {topic}
+    4. Provide all functional blocks for implementation of all the ideas
+    5. Provide all the technical services for the said blocks
+    6. Code snippets and short descriptions of the code
+    7. Detailed examples of what else can be done using {topic}
+    8. Be formatted in a professional, easy-to-read style with clear headings
+  expected_output: >
+    A polished, professional blog document that can be used by decission makers and developers alike to 
+    understand {topic} and ideas on how to implement them in the enterprise product.
+  agent: visionary
+  context:
+    - junior_developer_task
+    - research_task
+    - senior_developer_task
+  output_file: output/ideas.md
